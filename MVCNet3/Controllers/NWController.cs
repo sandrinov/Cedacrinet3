@@ -20,6 +20,8 @@ namespace MVCNet3.Controllers
         // GET: NW/Employees
         public ActionResult Employees()
         {
+
+            ///
             //var result = from e in ctx.Employees
             //             where e.City.StartsWith("Lon")
             //             orderby e.LastName
