@@ -9,11 +9,22 @@ namespace WebAPINet3.Controllers
 {
     public class EmployeesController : ApiController
     {
+        private Models.SimpleNorthwindDataSource ds;
+        public EmployeesController()
+        {
+            ds = new Models.SimpleNorthwindDataSource();
+        }
+
         [Route("api/employees")]
         public IHttpActionResult Get()
         {
-            Models.SimpleNorthwindDataSource ds = new Models.SimpleNorthwindDataSource();
+            
             return Ok(ds.GetEmployees());
+        }
+        [Route("api/orders")]
+        public IHttpActionResult Get(int employeeID)
+        {
+            return Ok(ds.GetOrdersByEmployeeID(employeeID));
         }
     }
 }
