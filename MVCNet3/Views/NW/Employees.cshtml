@@ -8,6 +8,12 @@
     .smartcolor {
         background-color: #9bae6b;
     }
+    .cursorpointer {
+        cursor: pointer;
+    }
+    .hiddenelement {
+        display: none;
+    }
 </style>
 
 <h2>Employees</h2>
@@ -21,6 +27,9 @@
         <table class="table" id="tbl_employee">
             <tr>
                 <th>
+                    EmplyeeID
+                </th>
+                <th>
                     Last Name
                 </th>
                 <th>
@@ -31,12 +40,17 @@
                     City
                 </th>
 
-                <th></th>
+                <th>
+                    Orders
+                </th>
             </tr>
 
             @foreach (var item in Model)
             {
                 <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployeeID)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>
@@ -49,7 +63,10 @@
                     </td>
 
                     <td>
-                        @Html.ActionLink("View Orders", "EmployeeOrders", new { id = item.EmployeeID })
+                        @*@Html.ActionLink("View Orders", "EmployeeOrders", new { id = item.EmployeeID })*@
+                        <div class="cursorpointer text-primary divdetail">
+                            Dettaglio Ordini
+                        </div>
                     </td>
                 </tr>
             }
@@ -66,6 +83,25 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('tr:even').addClass('smartcolor');
-        });
+            $('th').first().hide();
+            $('tr td:first-child').hide();
+
+            $('div.divdetail').click(function () {
+
+                var employeeID = $(this).closest('tr').find('td').first().text().trim();
+                var server_url = 'http://localhost:2625/';
+                var api_action = 'api/orders';
+                var params = '?EmployeeID=' + employeeID;
+
+                $.ajax({
+                    cache: false,
+                    url: server_url + api_action + params
+                }).done(function (orders) {
+
+                    var x = 0;
+                });
+
+            }); // end click handler
+        }); // end jquery
     </script>
 

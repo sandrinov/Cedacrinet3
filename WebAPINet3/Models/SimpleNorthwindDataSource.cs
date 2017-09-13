@@ -38,6 +38,27 @@ namespace WebAPINet3.Models
                              OrderDate = DateTime.Now.AddDays(-98) }
                      };
             }
+            else if (employeeID == 2)
+            {
+                Orders = new List<Order>(){
+                         new Order() {
+                             OrderID =7,
+                             OrderNumber ="KKJH673",
+                             OrderDate = DateTime.Now.AddDays(-25) },
+                         new Order() {
+                             OrderID =4,
+                             OrderNumber ="POIH56F",
+                             OrderDate = DateTime.Now.AddDays(-263) },
+                         new Order() {
+                             OrderID =5,
+                             OrderNumber ="PPP777R4",
+                             OrderDate = DateTime.Now.AddDays(-9) },
+                          new Order() {
+                             OrderID =6,
+                             OrderNumber ="LLHJY66654D",
+                             OrderDate = DateTime.Now.AddDays(-198) }
+                     };
+            }
             else
                 Orders = new List<Order>();
             return Orders;
