@@ -22,7 +22,7 @@ namespace MVCNet3.Controllers
             //_ds = ds;
             client.BaseAddress = new Uri("http://localhost:2625/");
         }
-        // GET: NW/Employees
+        /// GET: NW/Employees
         public async Task<ActionResult> Employees()
         {
             var api_url = "api/employees";
