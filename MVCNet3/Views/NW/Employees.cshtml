@@ -75,6 +75,9 @@
     </div>
     <div class="col-sm-6">
         <p> List of Orders </p>
+        <ul id="list_orders">
+
+        </ul>
     </div>
 </div>
    
@@ -97,10 +100,24 @@
                     cache: false,
                     url: server_url + api_action + params
                 }).done(function (orders) {
+                    //0) find ul element
+                    var $lst = $('#list_orders');
 
-                    var x = 0;
-                });
+                    //1) Clear the ul list
+                    $lst.empty();
+                    
+                    //2) enumerate orders
+                    $.each(orders, function (i, order) {
+                        //3) for each order append a <li> element to <ul>
+                        var li = '<li>';
+                        var date = new Date(order.OrderDate);
+                        var d = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+                        li += order.OrderNumber + ' ' + d;
+                        li += '</li>';
+                        $lst.append(li);
 
+                    });//end for aech
+                });// end ajax callback
             }); // end click handler
         }); // end jquery
     </script>
